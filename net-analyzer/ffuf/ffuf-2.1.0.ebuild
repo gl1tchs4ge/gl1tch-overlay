@@ -19,7 +19,7 @@ S="${WORKDIR}/ffuf-${PV}"
 RESTRICT="network-sandbox"
 
 src_compile() {
-	ego build -o gobuster . 
+	ego build -o ffuf . 
 }
 src_install() {
 	dobin ffuf
