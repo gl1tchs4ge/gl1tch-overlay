@@ -12,18 +12,15 @@ SRC_URI="https://github.com/ffuf/ffuf/archive/refs/tags/v${PV}.tar.gz -> ${P}.ta
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~arm64"
+KEYWORDS="~amd64 ~x86"
 
 S="${WORKDIR}/ffuf-${PV}"
 
 RESTRICT="network-sandbox"
 
 src_compile() {
-    export GO111MODULE=on
-    export GOFLAGS="-mod=mod"
-    go build -o ffuf ./cmd/ffuf
+	ego build -o gobuster . 
 }
-
 src_install() {
-    dobin ffuf
+	dobin ffuf
 }
