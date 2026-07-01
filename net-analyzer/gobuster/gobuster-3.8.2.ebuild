@@ -20,7 +20,7 @@ RESTRICT="network-sandbox"
 S="${WORKDIR}/gobuster-${PV}"
 
 src_compile() {
-	ego build -mod=vendor -o gobuster .
+	ego build -o gobuster .
 }
 
 src_install() {
