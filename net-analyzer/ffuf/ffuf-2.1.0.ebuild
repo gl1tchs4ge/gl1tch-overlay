@@ -3,28 +3,25 @@
 
 EAPI=8
 
-EGO_PN="github.com/ffuf/ffuf/v2"
-
 inherit go-module
 
 DESCRIPTION="Fast web fuzzer written in Go"
 HOMEPAGE="https://github.com/ffuf/ffuf"
+
 SRC_URI="https://github.com/ffuf/ffuf/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~arm64 ~x86"
+KEYWORDS="~amd64 ~x86 ~arm64"
 
-BDEPEND="dev-lang/go"
+S="${WORKDIR}/ffuf-${PV}"
 
-# REQUIRED: let go-module handle dependencies properly
-src_unpack() {
-    default
-    cd "${S}" || die
-}
+RESTRICT="network-sandbox"
 
 src_compile() {
-    ego build -o ffuf ./cmd/ffuf
+    export GO111MODULE=on
+    export GOFLAGS="-mod=mod"
+    go build -o ffuf ./cmd/ffuf
 }
 
 src_install() {
